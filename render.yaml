@@ -3,6 +3,6 @@ services:
     name: n8n-sheets
     env: node
     plan: free
-    buildCommand: pnpm build
-    startCommand: pnpm start
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
     autoDeploy: true

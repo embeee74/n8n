@@ -3,6 +3,23 @@ services:
     name: n8n-sheets
     env: node
     plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    # Specify Node.js version 20 (or higher, up to 24.x)
+    nodeVersion: 20.x
+    # Use pnpm for installation and building
+    buildCommand: npm install -g pnpm && pnpm install && pnpm run build
+    startCommand: pnpm run start
     autoDeploy: true
+    # Add environment variables for n8n configuration
+    envVars:
+      - key: WEBHOOK_URL
+        value: https://n8n-sheets.onrender.com/
+      - key: N8N_HOST
+        value: n8n-sheets.onrender.com
+      - key: N8N_PORT
+        value: 443
+      - key: N8N_PROTOCOL
+        value: https
+      - key: GENERIC_TIMEZONE
+        value: Australia/Sydney # Based on your location (Greenbank, QLD)
+      - key: TZ
+        value: Australia/Sydney
